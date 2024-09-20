@@ -11,8 +11,6 @@ const ProjectForm = ({ projectData }) => {
     endDate: '',
     budget: '',
     status: '',
-    projectManagerId: '',
-    assignedEmployeeIds: [],
     tasks: [{ taskName: '', taskDescription: '', status: '', startDate: '', dueDate: '' }]
   });
   const [employees, setEmployees] = useState([]);
@@ -157,18 +155,15 @@ const ProjectForm = ({ projectData }) => {
           </Select>
         </div>
         <div className="mb-4">
-          <Label htmlFor="projectManagerId" value="Project Manager" />
+          <Label htmlFor="projectManager" value="Project Manager" />
           <Select
-            id="projectManagerId"
-            name="projectManagerId"
-            value={formData.projectManagerId}
-            onChange={handleInputChange}
-            required
+            id="projectManager"
+            name="projectManager"
           >
             <option value="">Select Project Manager</option>
-            {projectManagers.map((manager) => (
+            {Array.isArray(projectManagers) && projectManagers.map((manager) => (
               <option key={manager.id} value={manager.id}>
-                {manager.name}
+                {manager.username}
               </option>
             ))}
           </Select>
@@ -178,15 +173,11 @@ const ProjectForm = ({ projectData }) => {
           <Label htmlFor="assignedEmployees" value="Assigned Employees" />
           <Select
             id="assignedEmployees"
-            name="assignedEmployeeIds"
-            value={formData.assignedEmployeeIds}
-            onChange={(e) => setFormData({ ...formData, assignedEmployeeIds: [...e.target.selectedOptions].map(option => option.value) })}
-            multiple
-            required
+            name="assignedEmployees"
           >
-            {employees.map((employee) => (
+            {Array.isArray(employees) && employees.map((employee) => (
               <option key={employee.id} value={employee.id}>
-                {employee.name}
+                {employee.username}
               </option>
             ))}
           </Select>
