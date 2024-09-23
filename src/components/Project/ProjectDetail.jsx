@@ -11,7 +11,7 @@ const ProjectDetail = () => {
   useEffect(() => {
     // Fetch project by ID from the backend (API call)
     const fetchProject = async () => {
-      const response = await fetch(`http://localhost:8089/api/projects/${id}`, {
+      const response = await fetch(`http://localhost:8089/api/pm/projects/${id}`, {
         headers: {
           Authorization: token,
         }
@@ -40,7 +40,7 @@ const ProjectDetail = () => {
       <div className="mt-4">
         <h3 className="text-lg font-semibold">Status</h3>
         <Badge color={project.status === 'completed' ? 'green' : 'blue'}>
-          {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
+          {project.status}
         </Badge>
       </div>
     </div>

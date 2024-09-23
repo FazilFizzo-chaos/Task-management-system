@@ -55,7 +55,6 @@ const ProjectList = () => {
 
                 <Table.Cell>{project.name}</Table.Cell>
                 <Table.Cell>{project.description.slice(0, 50)}{project.description.length > 50 && '...'}</Table.Cell>
-                <Table.Cell>{project.budget}</Table.Cell>
                 <Table.Cell>{new Date(project.startDate).toLocaleDateString()}</Table.Cell>
                 <Table.Cell>{new Date(project.endDate).toLocaleDateString()}</Table.Cell>
                 <Table.Cell>
@@ -63,10 +62,12 @@ const ProjectList = () => {
                     {project.status.charAt(0).toUpperCase() + project.status.slice(1)}
                   </Badge>
                 </Table.Cell>
+                <Table.Cell>{project.budget}</Table.Cell>
                 <Table.Cell>
-                  <Link to={`/projects/${project.id}`} className="text-blue-500 hover:underline">
-                    View Details
-                  </Link>
+                  <Link to={`/dashboard/projects/${project.id}`} className="text-blue-500 hover:underline">
+                       View Details
+                       </Link>
+
                 </Table.Cell>
               </Table.Row>
             ))}
